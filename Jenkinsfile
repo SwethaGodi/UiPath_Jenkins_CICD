@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                UiPathDeploy credentials: Token(accountName: 'mirackhaqfin', credentialsId: '4510e6d2-333e-4044-a826-bf9909ab2d88'), environments: 'DevEnvironment', folderName: 'Default', orchestratorAddress: 'https://cloud.uipath.com/', orchestratorTenant: 'MiracleSoftwareSystemsDefault', packagePath: 'C:\\Users\\DELL\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\UiPath_CICD_Pipeline_main'
+                UiPathDeploy credentials: Token(accountName: 'mirackhaqfin', credentialsId: '4510e6d2-333e-4044-a826-bf9909ab2d88'), environments: 'DevEnvironment', folderName: 'Default', orchestratorAddress: 'https://cloud.uipath.com/', orchestratorTenant: 'MiracleSoftwareSystemsDefault', packagePath: 'C:\\Users\\DELL\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\UiPath_CICD_Pipeline_main\\Output'
             }
         }
     }
