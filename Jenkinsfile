@@ -2,20 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Git-checkout') {
+        stage('Git') {
             steps {
-                git branch: 'main', credentialsId: '346437b0-29b5-4f12-a78f-7926df5cf35f', url: 'https://github.com/SwethaGodi/UiPath_Jenkins_CICD.git'
+                git branch: 'main', credentialsId: '411c23f6-fa32-43bb-bf63-c82a1adfd2ce', url: 'https://github.com/SwethaGodi/UiPath_Jenkins_CICD.git'
             }
         }
-         stage('Build') {
+        stage('Build') {
             steps {
-                UiPathPack( outputPath: '${WORKSPACE}\\Output', projectJsonPath: '${WORKSPACE}\\project.json', version: CurrentVersion())
+                echo "${WORKSPACE}"
+                UiPathPack( outputPath: '${WORKSPACE}\\Output', projectJsonPath: 'project.json', version: CurrentVersion())
             }
         }
         stage('Deploy') {
             steps {
-                UiPathDeploy credentials: Token(accountName: 'mirackhaqfin', credentialsId: '4510e6d2-333e-4044-a826-bf9909ab2d88'), environments: 'DevEnvironment', folderName: 'Default', orchestratorAddress: 'https://cloud.uipath.com/', orchestratorTenant: 'MiracleSoftwareSystemsDefault', packagePath: 'C:\\Users\\DELL\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\UiPath_CICD_Pipeline_main\\Output'
+                UiPathDeploy( credentials: Token(accountName: 'mirackhaqfin', credentialsId: '0f936108-afeb-4292-bc61-f0b438f6999d'), environments: 'DevEnvironment', folderName: 'Default', orchestratorAddress: 'https://cloud.uipath.com/', orchestratorTenant: 'MiracleSoftwareSystemsDefault', packagePath: 'C:\\Users\\DELL\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\UiPath_CICD_Pipeline_main\\Output')
             }
         }
     }
 }
+
